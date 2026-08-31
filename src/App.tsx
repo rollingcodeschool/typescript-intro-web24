@@ -19,6 +19,10 @@ const App = () => {
     );
   };
 
+  const borrarProducto = (id: number) => {
+    setProducts((prod: Product[]) => prod.filter((item) => item.id != id));
+  };
+
   const pendientes: number = products.filter((item) => !item.check).length;
 
   return (
@@ -36,6 +40,7 @@ const App = () => {
             product={item}
             key={item.id}
             actualizarProducto={actualizarProducto}
+            borrarProducto={borrarProducto}
           />
         ))}
         {/* Tarjetas de productos  */}
