@@ -10,6 +10,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   const toggleTheme = () => {
     setTheme((prevTheme: Theme) => (prevTheme === "light" ? "dark" : "light"));
+    localStorage.setItem("theme", JSON.stringify(theme));
   };
 
   return (

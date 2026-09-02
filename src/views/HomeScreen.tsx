@@ -29,28 +29,24 @@ const HomeScreen = () => {
   const pendientes: number = products.filter((item) => !item.check).length;
 
   return (
-    <main
-      className={`${context?.theme === "dark" ? "dark-mode" : "bg-amber-50"}`}
-    >
-      <section className="min-h-screen flex flex-col justify-center items-center">
-        <h1 className="text-2xl">Lista de shopping</h1>
-        <div className="w-80 mb-1">
-          <FormShop agregarProducto={agregarProducto} />
-        </div>
-        <div>
-          <span>{pendientes} Pendientes</span>
-        </div>
-        {products.map((item) => (
-          <CardShop
-            product={item}
-            key={item.id}
-            actualizarProducto={actualizarProducto}
-            borrarProducto={borrarProducto}
-          />
-        ))}
-        {/* Tarjetas de productos  */}
-      </section>
-    </main>
+    <section className="min-h-screen flex flex-col justify-center items-center">
+      <h1 className="text-2xl">Lista de shopping</h1>
+      <div className="w-80 mb-1">
+        <FormShop agregarProducto={agregarProducto} />
+      </div>
+      <div>
+        <span>{pendientes} Pendientes</span>
+      </div>
+      {products.map((item) => (
+        <CardShop
+          product={item}
+          key={item.id}
+          actualizarProducto={actualizarProducto}
+          borrarProducto={borrarProducto}
+        />
+      ))}
+      {/* Tarjetas de productos  */}
+    </section>
   );
 };
 

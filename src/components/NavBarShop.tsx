@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import ButtonTheme from "./ButtonTheme";
 
 const NavBarShop = () => {
   const items = [
@@ -14,7 +15,7 @@ const NavBarShop = () => {
     },
   ];
   return (
-    <nav className="flex justify-end items-center">
+    <nav className="flex justify-end items-center me-3">
       <ul className="flex gap-4">
         {items.map((item) => (
           <li key={item.id}>
@@ -28,6 +29,9 @@ const NavBarShop = () => {
             </NavLink>
           </li>
         ))}
+        <li>
+          <ButtonTheme />
+        </li>
       </ul>
     </nav>
   );
