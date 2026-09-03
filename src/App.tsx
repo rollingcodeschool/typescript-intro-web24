@@ -1,46 +1,28 @@
-import { useState } from "react";
-import type { Product } from "./interfaces/products";
-import FormShop from "./components/FormShop";
-import CardShop from "./components/CardShop";
+import { BrowserRouter, Routes, Route } from "react-router";
+import HomeScreen from "./views/HomeScreen";
+import AboutScreen from "./views/AboutScreen";
+import LayoutScreen from "./layout/LayoutScreen";
+import { useEffect } from "react";
+import { usuarios } from "./data/usuarios";
+import LoginScreen from "./views/LoginScreen";
 
 const App = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-
-  const agregarProducto = (producto: Product): void => {
-    //{id,nombre,check}
-    setProducts([...products, producto]);
-  };
-
-  const actualizarProducto = (id: number): void => {
-    setProducts((prod) =>
-      prod.map((item) =>
-        item.id === id ? { ...item, check: !item.check } : item,
-      ),
-    );
-  };
-
-  const pendientes: number = products.filter((item) => !item.check).length;
+  useEffect(() => {
+    if (!localStorage.getItem("users")) {
+      localStorage.setItem("users", JSON.stringify(usuarios));
+    }
+  }, []);
 
   return (
-    <main className="bg-gray-100">
-      <section className="min-h-screen flex flex-col justify-center items-center">
-        <h1 className="text-2xl">Lista de shopping</h1>
-        <div className="w-80 mb-1">
-          <FormShop agregarProducto={agregarProducto} />
-        </div>
-        <div>
-          <span>{pendientes} Pendientes</span>
-        </div>
-        {products.map((item) => (
-          <CardShop
-            product={item}
-            key={item.id}
-            actualizarProducto={actualizarProducto}
-          />
-        ))}
-        {/* Tarjetas de productos  */}
-      </section>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LayoutScreen />}>
+          <Route index element={<HomeScreen />} />
+          <Route path="/about" element={<AboutScreen />} />
+        </Route>
+        <Route path="/login" element={<LoginScreen />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

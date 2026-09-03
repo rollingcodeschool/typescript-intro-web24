@@ -1,1 +1,17 @@
 @import "tailwindcss";
+:root {
+  --text-dark: #c7c9c3;
+}
+.dark-mode {
+  background-color: black;
+  color: white;
+  & input {
+    background-color: #282a2c;
+    color: var(--text-dark);
+  }
+  & article {
+    background-color: #131314;
+    color: var(--text-dark);
+    border: 1px solid var(--text-dark);
+  }
+}
